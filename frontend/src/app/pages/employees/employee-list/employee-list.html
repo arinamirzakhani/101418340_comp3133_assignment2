@@ -1,0 +1,115 @@
+<div class="page-container">
+  <mat-card class="employee-card">
+
+    <div class="card-header">
+      <h2>Employee Management</h2>
+
+      <button mat-raised-button color="primary" routerLink="/employees/add">
+        <mat-icon>add</mat-icon>
+        Add Employee
+      </button>
+    </div>
+
+    <!-- Search -->
+    <div style="display:flex; gap:12px; align-items:center; margin: 14px 0;">
+      <mat-form-field appearance="outline" style="flex:1;">
+        <mat-label>Search by department or position</mat-label>
+        <input
+          matInput
+          [(ngModel)]="searchText"
+          (keyup.enter)="onSearch()"
+          placeholder="e.g. IT or Developer"
+        />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <button mat-stroked-button type="button" (click)="onSearch()" [disabled]="loading">
+        Search
+      </button>
+
+      <button mat-button type="button" (click)="clearSearch()" [disabled]="loading">
+        Clear
+      </button>
+    </div>
+
+    <!-- Loading -->
+    <div *ngIf="loading" style="margin: 10px 0;">Loading...</div>
+
+    <!-- Error -->
+    <div *ngIf="!loading && errorMsg" style="color:#d32f2f; font-weight:600; margin-bottom:10px;">
+      {{ errorMsg }}
+    </div>
+
+    <!-- Table (only show when not loading, no error, and have data) -->
+    <table
+      mat-table
+      class="mat-elevation-z2"
+      [dataSource]="employees"
+      *ngIf="!loading && !errorMsg && employees.length > 0"
+    >
+
+      <!-- Name -->
+      <ng-container matColumnDef="fullName">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let emp">
+          <a
+            [routerLink]="['/employees', emp._id]"
+            [appHighlight]="true"
+            style="text-decoration:none;"
+          >
+            {{ emp.fullName }}
+          </a>
+        </td>
+      </ng-container>
+
+      <!-- Position -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> Position </th>
+        <td mat-cell *matCellDef="let emp">
+          {{ emp.position | titlecaseSafe }}
+        </td>
+      </ng-container>
+
+      <!-- Department -->
+      <ng-container matColumnDef="department">
+        <th mat-header-cell *matHeaderCellDef> Department </th>
+        <td mat-cell *matCellDef="let emp">
+          {{ emp.department | titlecaseSafe }}
+        </td>
+      </ng-container>
+
+      <!-- Actions -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let emp">
+
+          <button mat-button color="primary" [routerLink]="['/employees', emp._id]">
+            <mat-icon>visibility</mat-icon>
+            View
+          </button>
+
+          <button mat-button color="accent" [routerLink]="['/employees', emp._id, 'edit']">
+            <mat-icon>edit</mat-icon>
+            Edit
+          </button>
+
+          <button mat-button color="warn" type="button" (click)="deleteEmployee(emp._id)">
+            <mat-icon>delete</mat-icon>
+            Delete
+          </button>
+
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    <!-- Empty state (only after load, no error, and no rows) -->
+    <div *ngIf="!loading && !errorMsg && employees.length === 0" style="margin-top: 12px; opacity: 0.8;">
+      No employees found.
+    </div>
+
+  </mat-card>
+</div>

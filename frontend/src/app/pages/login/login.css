@@ -1,0 +1,54 @@
+/* Light soft background */
+.login-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f5f7fa, #e4ecf7);
+}
+
+/* Card styling */
+.login-card {
+  width: 400px;
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Title styling */
+.title {
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.subtitle {
+  margin-bottom: 30px;
+  color: #666;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.login-btn {
+  margin-top: 15px;
+  height: 45px;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+.signup-link {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.signup-link a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #1976d2;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}

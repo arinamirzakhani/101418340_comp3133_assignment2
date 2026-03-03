@@ -1,0 +1,105 @@
+<div class="page-container">
+  <mat-card class="form-card">
+
+    <div class="header">
+      <h2>Update Employee</h2>
+
+      <button mat-stroked-button type="button" (click)="cancel()" [disabled]="saving">
+        <mat-icon>arrow_back</mat-icon>
+        Back
+      </button>
+    </div>
+
+    <div *ngIf="loading" class="status">Loading employee...</div>
+
+    <div *ngIf="errorMsg && !loading" class="error">
+      {{ errorMsg }}
+    </div>
+
+    <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="onSave()">
+
+      <!-- Profile Image Preview -->
+      <div class="image-row">
+        <div class="avatar">
+          <img *ngIf="previewUrl; else noImage" [src]="previewUrl" alt="Profile" />
+          <ng-template #noImage>
+            <div class="placeholder">
+              <mat-icon>person</mat-icon>
+            </div>
+          </ng-template>
+        </div>
+
+        <div class="upload">
+          <label class="upload-label">Change Profile Picture (optional)</label>
+          <input type="file" accept="image/*" (change)="onFileChange($event)" />
+          <div *ngIf="selectedFile" class="file-name">
+            Selected: <strong>{{ selectedFile.name }}</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Full Name -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Full Name</mat-label>
+        <input matInput formControlName="fullName" />
+        <mat-icon matSuffix>person</mat-icon>
+
+        <mat-error *ngIf="fullName?.touched && fullName?.hasError('required')">
+          Full name is required
+        </mat-error>
+        <mat-error *ngIf="fullName?.touched && fullName?.hasError('minlength')">
+          Full name must be at least 2 characters
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Position -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Position</mat-label>
+        <input matInput formControlName="position" />
+        <mat-icon matSuffix>work</mat-icon>
+
+        <mat-error *ngIf="position?.touched && position?.hasError('required')">
+          Position is required
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Department -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Department</mat-label>
+        <input matInput formControlName="department" />
+        <mat-icon matSuffix>business</mat-icon>
+
+        <mat-error *ngIf="department?.touched && department?.hasError('required')">
+          Department is required
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Email -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+        <mat-icon matSuffix>email</mat-icon>
+
+        <mat-error *ngIf="email?.touched && email?.hasError('required')">
+          Email is required
+        </mat-error>
+        <mat-error *ngIf="email?.touched && email?.hasError('email')">
+          Enter a valid email
+        </mat-error>
+      </mat-form-field>
+
+      <div class="button-group">
+        <button mat-stroked-button type="button" (click)="cancel()" [disabled]="saving">
+          Cancel
+        </button>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid || saving">
+          <mat-icon>save</mat-icon>
+          {{ saving ? 'Saving...' : 'Save Changes' }}
+        </button>
+      </div>
+
+    </form>
+
+  </mat-card>
+</div>

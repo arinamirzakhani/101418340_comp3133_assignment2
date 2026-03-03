@@ -1,0 +1,68 @@
+<div class="page-container">
+  <mat-card class="detail-card">
+
+    <div class="header">
+      <h2>Employee Details</h2>
+
+      <div class="header-actions">
+        <button mat-stroked-button (click)="goBack()">
+          <mat-icon>arrow_back</mat-icon>
+          Back
+        </button>
+
+        <button mat-raised-button color="primary" (click)="goEdit()" [disabled]="!employee">
+          <mat-icon>edit</mat-icon>
+          Edit
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="loading" class="status">Loading...</div>
+
+    <div *ngIf="errorMsg && !loading" class="error">
+      {{ errorMsg }}
+    </div>
+
+    <div *ngIf="employee && !loading" class="content">
+
+      <div class="left">
+        <div class="avatar">
+          <img
+            *ngIf="employee.profileImage; else noImage"
+            [src]="employee.profileImage"
+            alt="Employee profile"
+          />
+          <ng-template #noImage>
+            <div class="placeholder">
+              <mat-icon>person</mat-icon>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="row">
+          <span class="label">Full Name</span>
+          <span class="value">{{ employee.fullName }}</span>
+        </div>
+
+        <div class="row">
+          <span class="label">Email</span>
+          <span class="value">{{ employee.email }}</span>
+        </div>
+
+        <div class="row">
+          <span class="label">Position</span>
+          <span class="value">{{ employee.position | titlecaseSafe }}</span>
+        </div>
+
+        <div class="row">
+          <span class="label">Department</span>
+          <span class="value">{{ employee.department | titlecaseSafe }}</span>
+        </div>
+      </div>
+
+    </div>
+
+  </mat-card>
+</div>

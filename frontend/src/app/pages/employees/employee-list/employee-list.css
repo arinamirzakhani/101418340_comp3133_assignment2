@@ -1,0 +1,60 @@
+.page-container {
+  padding: 50px;
+  background: #f4f6f9;
+  min-height: 100vh;
+}
+
+.employee-card {
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+table {
+  width: 100%;
+}
+
+/* Remove Material default borders */
+.mat-mdc-cell,
+.mat-mdc-header-cell {
+  border-bottom: none !important;
+}
+
+/* Custom clean row divider */
+.mat-mdc-row {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background 0.2s ease;
+}
+
+/* Remove last row border */
+.mat-mdc-row:last-child {
+  border-bottom: none;
+}
+
+/* Header style */
+.mat-mdc-header-row {
+  border-bottom: 2px solid #d1d5db;
+}
+
+.mat-mdc-header-cell {
+  font-weight: 600;
+  background: #f9fafb;
+}
+
+/* Hover effect */
+.mat-mdc-row:hover {
+  background: #f9fafb;
+}
+
+/* Actions column */
+.actions-cell {
+  display: flex;
+  gap: 12px;
+}

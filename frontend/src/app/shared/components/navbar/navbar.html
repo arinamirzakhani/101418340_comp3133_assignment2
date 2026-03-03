@@ -1,0 +1,26 @@
+<mat-toolbar class="nav">
+  <div class="left" routerLink="/employees">
+    <mat-icon class="logo">groups</mat-icon>
+    <span class="brand">Employee Management</span>
+  </div>
+
+  <span class="spacer"></span>
+
+  <!-- Only show these if logged in -->
+  <ng-container *ngIf="auth.isLoggedIn()">
+    <button mat-button routerLink="/employees">
+      <mat-icon>list</mat-icon>
+      Employees
+    </button>
+
+    <button mat-button routerLink="/employees/add">
+      <mat-icon>add</mat-icon>
+      Add
+    </button>
+
+    <button mat-raised-button color="primary" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      Logout
+    </button>
+  </ng-container>
+</mat-toolbar>
