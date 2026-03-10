@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   ReactiveFormsModule,
@@ -40,7 +40,8 @@ export class SignupComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private cdr: ChangeDetectorRef
   ) {
     this.form = this.fb.group(
       {
@@ -85,10 +86,12 @@ export class SignupComponent {
 
     if (this.form.invalid) {
       this.form.markAllAsTouched();
+      this.cdr.detectChanges();
       return;
     }
 
     this.loading = true;
+    this.cdr.detectChanges();
 
     try {
       await this.auth.signup(
@@ -100,8 +103,10 @@ export class SignupComponent {
       this.router.navigate(['/employees']);
     } catch (err: any) {
       this.errorMsg = err?.message || 'Signup failed. Please try again.';
+      this.cdr.detectChanges();
     } finally {
       this.loading = false;
+      this.cdr.detectChanges();
     }
   }
 }
