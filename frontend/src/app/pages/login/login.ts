@@ -62,14 +62,4 @@ export class LoginComponent {
       this.loading = false;
     }
   }
-
-  /**
-   * ⚠️ DEV ONLY (REMOVE BEFORE SUBMISSION)
-   * This bypasses backend authentication so you can access protected routes.
-   * DELETE this method when backend is ready.
-   */
-  devLogin(): void {
-    localStorage.setItem('token', 'DEV_TOKEN');
-    this.router.navigate(['/employees']);
-  }
 }
