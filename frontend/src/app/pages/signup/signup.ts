@@ -1,6 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  Validators,
+  FormGroup,
+  AbstractControl,
+  ValidationErrors
+} from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -35,24 +42,42 @@ export class SignupComponent {
     private router: Router,
     private auth: AuthService
   ) {
-    this.form = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required]],
-    }, { validators: [this.passwordsMatchValidator] });
+    this.form = this.fb.group(
+      {
+        username: ['', [Validators.required, Validators.minLength(2)]],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        confirmPassword: ['', [Validators.required]],
+      },
+      { validators: this.passwordsMatchValidator }
+    );
   }
 
-  get username() { return this.form.get('username'); }
-  get email() { return this.form.get('email'); }
-  get password() { return this.form.get('password'); }
-  get confirmPassword() { return this.form.get('confirmPassword'); }
+  get username() {
+    return this.form.get('username');
+  }
 
-  // Custom validator: password === confirmPassword
-  passwordsMatchValidator(group: FormGroup) {
-    const pass = group.get('password')?.value;
-    const confirm = group.get('confirmPassword')?.value;
-    return pass === confirm ? null : { passwordMismatch: true };
+  get email() {
+    return this.form.get('email');
+  }
+
+  get password() {
+    return this.form.get('password');
+  }
+
+  get confirmPassword() {
+    return this.form.get('confirmPassword');
+  }
+
+  passwordsMatchValidator(control: AbstractControl): ValidationErrors | null {
+    const password = control.get('password')?.value;
+    const confirmPassword = control.get('confirmPassword')?.value;
+
+    if (!password || !confirmPassword) {
+      return null;
+    }
+
+    return password === confirmPassword ? null : { passwordMismatch: true };
   }
 
   async onSignup(): Promise<void> {
@@ -64,12 +89,14 @@ export class SignupComponent {
     }
 
     this.loading = true;
+
     try {
       await this.auth.signup(
         this.username?.value,
         this.email?.value,
         this.password?.value
       );
+
       this.router.navigate(['/employees']);
     } catch (err: any) {
       this.errorMsg = err?.message || 'Signup failed. Please try again.';
