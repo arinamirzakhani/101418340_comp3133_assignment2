@@ -1,10 +1,11 @@
 export const environment = {
-  production: false,
-  graphqlUrl: 'http://localhost:4000/graphql',
+  production: true,
 
- 
+  
+  graphqlUrl: 'https://one01418340-comp3133-assignment2.onrender.com/graphql',
+
   cloudinary: {
     cloudName: 'dct6xiypw',
-    uploadPreset: 'comp3133_unsigned',
-  },
+    uploadPreset: 'comp3133_unsigned'
+  }
 };
