@@ -28,6 +28,16 @@ The application allows users to:
 👉 https://one01418340-comp3133-assignment2.onrender.com/graphql
 
 ---
+### ⚠️ Backend Deployment Note
+
+The backend is deployed on Render (free tier).
+If the API has been inactive for a while, it may go to sleep.
+
+When accessing the backend for the first time, it may take **30–60 seconds** to start.
+
+Please wait briefly and refresh the page if needed.
+
+---
 
 ## 🛠️ Technologies Used
 
