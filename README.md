@@ -146,19 +146,5 @@ npm run dev
 
 ---
 
-## ✅ Assignment Requirements Coverage
-✔ Angular frontend with routing and components  
-✔ GraphQL integration (Apollo Angular)  
-✔ Authentication (Signup/Login/Logout)  
-✔ Employee CRUD operations  
-✔ Search functionality  
-✔ File upload (Cloudinary)  
-✔ UI using Angular Material  
-✔ Deployment (Frontend + Backend)  
-✔ GitHub repository with commits  
-✔ Validation and error handling  
-
----
-
 ## 📎 GitHub Repository
 👉 https://github.com/arinamirzakhani/101418340_comp3133_assignment2
