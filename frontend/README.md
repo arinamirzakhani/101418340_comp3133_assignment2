@@ -1,59 +1,72 @@
-# 101418340Comp3133Assignment2
+# COMP3133 Assignment 2 – Frontend (Angular)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.5.
+## Overview  
+This is the Angular frontend for the Employee Management System built using Angular + GraphQL (Apollo Client).  
+It connects to the backend GraphQL API to perform authentication and employee CRUD operations.
 
-## Development server
+---
 
-To start a local development server, run:
+## Features  
 
-```bash
-ng serve
-```
+### Authentication  
+- User Signup with validation  
+- User Login with JWT authentication  
+- Session stored using localStorage  
+- Logout functionality  
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Employee Management  
+- View all employees  
+- Add new employee (with image upload)  
+- View employee details  
+- Update employee information  
+- Delete employee  
 
-## Code scaffolding
+### Search  
+- Search employees by department or position  
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Validation & UX  
+- Reactive forms with validation  
+- Error messages for invalid inputs  
+- Angular Material UI for clean design  
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Technologies Used  
+- Angular  
+- Angular Material  
+- Apollo Angular (GraphQL client)  
+- TypeScript  
+- RxJS  
 
-```bash
-ng generate --help
-```
+---
 
-## Building
 
-To build the project run:
+## Installation & Setup  
 
-```bash
-ng build
-```
+1. Navigate to frontend folder:  
+cd frontend  
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+2. Install dependencies:  
+npm install  
 
-## Running unit tests
+3. Run the application:  
+ng serve  
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+4. Open in browser:  
+http://localhost:4200  
 
-```bash
-ng test
-```
+---
 
-## Running end-to-end tests
 
-For end-to-end (e2e) testing, run:
+## Deployment  
 
-```bash
-ng e2e
-```
+Frontend is deployed on:  
+👉 https://101418340-comp3133-assignment2.vercel.app/login
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+## Notes  
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Backend must be running for full functionality  
+- JWT token is stored in localStorage  
+- Uses Angular Material for UI components  
